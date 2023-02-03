@@ -65,7 +65,11 @@ func (c *App) request(method, path string, payload interface{}, query map[string
 	}
 
 	if res.StatusCode != http.StatusOK {
-		apiError := APIError{}
+		apiError = APIError{
+			URL:        req.URL.String(),
+			HttpMethod: req.Method,
+			HttpStatus: res.StatusCode,
+		}
 		json.NewDecoder(res.Body).Decode(&apiError)
 		return nil, apiError
 	}
