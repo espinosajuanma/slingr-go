@@ -39,3 +39,7 @@ func (c *App) ExecuteGlobalAction(entity, action string, payload interface{}) ([
 func (c *App) ExecuteActionOnQuery(entity, action string, payload interface{}) ([]byte, error) {
 	return c.Put("/data/"+entity+"/"+action, payload, nil)
 }
+
+func (c *App) Aggregate(entity string, payload interface{}) ([]byte, error) {
+	return c.Put("/data/"+entity+"/aggregate", payload, nil)
+}
